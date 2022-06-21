@@ -15,24 +15,39 @@ function computerPlay () {
 
 function playRound (playerSelection, computerSelection) {
 
-   if (playerSelection == 'rock' && computerSelection == 'paper') {
-    return "You lose! rock is absorbed by the paper!";
-   } else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-    return "You win! rock can break the scissors!";
-   } else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-    return "You lost! paper is weak against scissors!";
-   } else if (playerSelection == 'paper' && computerSelection == 'rock') {
-    return "You win! paper absorbed the rock!";
-   } else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-    return "You lost! scissors do nothing against rocks";
-   } else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-    return "You win! scissors cutted the paper";
+   if (playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'scissors' || playerSelection == 'scissors' && computerSelection == 'rock') {
+    return "You lose!";
+   } else if (playerSelection == 'rock' && computerSelection == 'scissors' || playerSelection == 'paper' && computerSelection == 'rock' || playerSelection == 'scissors' && computerSelection == 'paper') {
+    return "You win!";
    } else {
-    return "Its a draw";
+    return "Draw!";
    }
 
 }
 
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+
+    for (let i = 0; i < 5; i++){
+        let computerSelection = computerPlay();
+        let playerSelection = prompt("choose - rock, paper, scissors", "");
+        playRound(playerSelection, computerSelection);
+        round = playRound(playerSelection, computerSelection);
+        let playerScore = 0;
+        let computerScore = 0;
+        if (round == "You win!") {
+            console.log(round);
+            ++playerScore;
+            report = `Your current score is ${playerScore}.`;
+            console.log(report);
+        } else if (round == "You lose!") {
+            console.log(round);
+            ++computerScore;
+            report = `Computer score is ${computerScore}.`;
+            console.log(report);
+        } else {
+            console.log(round);
+            --i;
+        }
+        console.log(i);
+    }
+}
