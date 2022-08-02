@@ -16,38 +16,36 @@ function computerPlay () {
 function playRound (playerSelection, computerSelection) {
 
    if (playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'scissors' || playerSelection == 'scissors' && computerSelection == 'rock') {
-    return "You lose!";
+    return 0;
    } else if (playerSelection == 'rock' && computerSelection == 'scissors' || playerSelection == 'paper' && computerSelection == 'rock' || playerSelection == 'scissors' && computerSelection == 'paper') {
-    return "You win!";
+    return 1;
    } else {
-    return "Draw!";
+    return 2;
    }
 
 }
 
 function game() {
-
-    for (let i = 0; i < 5; i++){
-        let computerSelection = computerPlay();
-        let playerSelection = prompt("choose - rock, paper, scissors", "");
-        playRound(playerSelection, computerSelection);
+    let pScore = 0, cScore = 0;
+    for (let i = 0; i <= Infinity; i++) {
+        // Choosen weapon
+        computerSelection = computerPlay();
+        playerSelection = prompt("Choose: Rock, Paper, Scissors", "");
         round = playRound(playerSelection, computerSelection);
-        let playerScore = 0;
-        let computerScore = 0;
-        if (round == "You win!") {
-            console.log(round);
-            ++playerScore;
-            report = `Your current score is ${playerScore}.`;
-            console.log(report);
-        } else if (round == "You lose!") {
-            console.log(round);
-            ++computerScore;
-            report = `Computer score is ${computerScore}.`;
-            console.log(report);
+
+        // Round winner evaluator 
+        if (round == 0) {
+            console.log("You Lose!");
+            cScore++;
+        } else if (round == 1) {
+            console.log("You Win!");
+            pScore++;
         } else {
-            console.log(round);
-            --i;
-        }
-        console.log(i);
+            console.log("It's a Draw");
+        }    
+        console.log(`Your current score is ${pScore} and enemy score is ${cScore}`);
+
+        // break the loop if there is a WINNER
+        if (pScore === 5 || cScore === 5) break;
     }
 }
