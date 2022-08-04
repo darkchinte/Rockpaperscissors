@@ -53,31 +53,33 @@ body {
     align-items: center;
 }
 
-ul {
+.choices {
     display: flex;
     justify-content: space-around;
     width: 80vw;
     font-size: 20px;
 }
 
-ul li {
+.choices button {
     font-family: 'Caveat', sans-serif;
     font-size: 1.3em;
     background-color: #E6B325;
     box-shadow: 3px 1px #A47E3B;
-    list-style: none;
-    display: inline-block;
     padding: 3em;
     border-radius: 53% 47% 54% 46% / 55% 57% 43% 45%;
 }
 
 
 #play {
+    margin: 40px;
     font-family: 'Caveat', cursive;
     padding: 10px 40px;
     border-radius: 10px;
     background-color: #31087B;
     color: white;
     font-size: 20px;
-    border: 2px solid white;
+}
+
+.icon {
+    height: 40px;
 }
