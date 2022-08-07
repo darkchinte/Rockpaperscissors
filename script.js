@@ -32,15 +32,18 @@ function computerPlay () {
 }
 
 function playRound (playerSelection, computerSelection) {
-
    if (playerSelection == 'rock' && computerSelection == 'paper' || playerSelection == 'paper' && computerSelection == 'scissors' || playerSelection == 'scissors' && computerSelection == 'rock') {
-    return 0;
+        result.textContent = `!LOSE | YOU [${playerSelection}] VS [${computerSelection}] ENEMY | LOSE!`;
+        cScore++;
    } else if (playerSelection == 'rock' && computerSelection == 'scissors' || playerSelection == 'paper' && computerSelection == 'rock' || playerSelection == 'scissors' && computerSelection == 'paper') {
-    return 1;
+        result.textContent = `!WIN | YOU [${playerSelection}] VS [${computerSelection}] ENEMY | WIN!`;
+        pScore++;
    } else if (playerSelection == 'rock' && computerSelection == 'rock' || playerSelection == 'paper' && computerSelection == 'paper' || playerSelection == 'scissors' && computerSelection == 'scissors') {
-    return 2;
+        result.textContent = `!DRAW | YOU [${playerSelection}] VS [${computerSelection}] ENEMY | DRAW!`;
    }
 
+   playerScore.textContent = `${pScore}`;
+   computerScore.textContent = `${cScore}`;
 }
 
 function game() {
@@ -53,51 +56,34 @@ function game() {
     win.style.display = 'none';
     lose.style.display = 'none';
     choices.setAttribute('style', 'visibility: visible; opacity: 1;')
+
 }
 
-function displayScore (round) {
-    if (round == 0) {
-        result.textContent = 'You lose!';
-        cScore++;
-    } else if (round == 1) {
-        result.textContent = 'You win!';
-        pScore++;
-    } else if (round == 2) {
-        result.textContent = 'It\'s a draw!';
-    }
-    playerScore.textContent = `${pScore}`;
-    computerScore.textContent = `${cScore}`;
-}
 
 function gameStop (pScore, cScore) {
     if (pScore === 5) {
         playGame.textContent = 'PlAY AGAIN!';
-        result.textContent = 'YOU WON THE BATTLE!!!';
         choices.style.display = 'none';
         win.style.display = 'block';
     } else if (cScore === 5) {
         playGame.textContent = 'PlAY AGAIN!';
-        result.textContent = 'YOU LOST THE BATTLE!!!';
         lose.style.display = 'block';
         choices.style.display = 'none';
     }
 }
 
 rock.addEventListener('click', () => {
-    round = playRound('rock', computerPlay());
-    displayScore(round);
+    playRound('rock', computerPlay());
     gameStop(pScore, cScore);
 })
 
 paper.addEventListener('click', () => {
-    round = playRound('paper', computerPlay());
-    displayScore(round);
+    playRound('paper', computerPlay());
     gameStop(pScore, cScore);
 })
 
 scissors.addEventListener('click', () => {
-    round = playRound('scissors', computerPlay());
-    displayScore(round);
+    playRound('scissors', computerPlay());
     gameStop(pScore, cScore);
 })
 

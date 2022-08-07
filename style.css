@@ -18,10 +18,11 @@ body {
 
 .result {
     margin: 0;
-    color: #AAA;
+    color: red;
     text-shadow: 2px 2px #555555;
     font-family: 'Bahianita', cursive, sans-serif;
     font-size: 3.5em;
+    letter-spacing: 2px;
 }
 
 .score-section {
