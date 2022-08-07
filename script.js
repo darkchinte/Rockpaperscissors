@@ -1,6 +1,24 @@
+// choices
+const rock = document.getElementById('rock');
+const paper = document.getElementById('paper');
+const scissors = document.getElementById('scissors');
+
+// display
+const playerScore = document.querySelector('[data-user="player"]');
+const computerScore = document.querySelector('[data-user="computer"]');
+const choices = document.querySelector('.choices');
+const win = document.querySelector('.win-gif');
+const lose = document.querySelector('.lose-gif');
+
+// scores
+let pScore = 0, cScore = 0;
+
+//play button
+const result = document.querySelector('.result');
+const playGame = document.getElementById('play');
+playGame.addEventListener('click', game)
 
 // Randomly picks between 3 choices //
-
 function computerPlay () {
     let random = Math.floor(Math.random() * 3);
 
@@ -26,17 +44,15 @@ function playRound (playerSelection, computerSelection) {
 }
 
 function game() {
-    // choices
-    const rock = document.getElementById('rock');
-    const paper = document.getElementById('paper');
-    const scissors = document.getElementById('scissors');
     // reset score
-    pScore = 0;
-    cScore = 0;
+    pScore = 0, cScore = 0;
     playerScore.textContent = `${pScore}`;
     computerScore.textContent = `${cScore}`;
-
     result.textContent = 'THE BATTLE BEGINS!';
+
+    win.style.display = 'none';
+    lose.style.display = 'none';
+    choices.setAttribute('style', 'visibility: visible; opacity: 1;')
 }
 
 function displayScore (round) {
@@ -57,11 +73,13 @@ function gameStop (pScore, cScore) {
     if (pScore === 5) {
         playGame.textContent = 'PlAY AGAIN!';
         result.textContent = 'YOU WON THE BATTLE!!!';
-        return;
+        choices.style.display = 'none';
+        win.style.display = 'block';
     } else if (cScore === 5) {
         playGame.textContent = 'PlAY AGAIN!';
         result.textContent = 'YOU LOST THE BATTLE!!!';
-        return;
+        lose.style.display = 'block';
+        choices.style.display = 'none';
     }
 }
 
@@ -84,14 +102,3 @@ scissors.addEventListener('click', () => {
 })
 
 
-// display
-const playerScore = document.querySelector('[data-user="player"]');
-const computerScore = document.querySelector('[data-user="computer"]');
-
-// scores
-let pScore = 0, cScore = 0;
-
-
-const result = document.querySelector('.result');
-const playGame = document.getElementById('play');
-playGame.addEventListener('click', game)
