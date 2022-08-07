@@ -57,6 +57,7 @@ function game() {
     lose.style.display = 'none';
     choices.setAttribute('style', 'visibility: visible; opacity: 1;')
 
+    playGame.style.visibility = 'hidden';
 }
 
 
@@ -65,10 +66,12 @@ function gameStop (pScore, cScore) {
         playGame.textContent = 'PlAY AGAIN!';
         choices.style.display = 'none';
         win.style.display = 'block';
+        playGame.style.visibility = 'visible';
     } else if (cScore === 5) {
         playGame.textContent = 'PlAY AGAIN!';
         lose.style.display = 'block';
         choices.style.display = 'none';
+        playGame.style.visibility = 'visible';
     }
 }
 
