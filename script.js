@@ -26,97 +26,71 @@ function playRound (playerSelection, computerSelection) {
 }
 
 function game() {
-    const result = document.querySelector('.result');
+    // choices
     const rock = document.getElementById('rock');
     const paper = document.getElementById('paper');
-    const playerScore = document.querySelector('[data-user="player"]');
-    const computerScore = document.querySelector('[data-user="computer"]');
-    playerScore.textContent = '0';
-    computerScore.textContent = '0';
+    const scissors = document.getElementById('scissors');
+    // reset score
+    pScore = 0;
+    cScore = 0;
+    playerScore.textContent = `${pScore}`;
+    computerScore.textContent = `${cScore}`;
+
     result.textContent = 'THE BATTLE BEGINS!';
-    let pScore = 0, cScore = 0;
 
     rock.addEventListener('click', () => {
         round = playRound('rock', computerPlay());
-        if (round == 0) {
-            result.textContent = 'You lose!';
-            cScore++;
-        } else if (round == 1) {
-            result.textContent = 'You win!';
-            pScore++;
-        } else if (round == 2) {
-            result.textContent = 'It\'s a draw!';
-        }
-        playerScore.textContent = `${pScore}`;
-        computerScore.textContent = `${cScore}`;
-
-        // Stops the function when winner score is reached
-        if (pScore === 5) {
-            playGame.textContent = 'PlAY AGAIN!';
-            result.textContent = 'YOU WON THE BATTLE!!!';
-            return;
-        } else if (cScore === 5) {
-            playGame.textContent = 'PlAY AGAIN!';
-            result.textContent = 'YOU LOST THE BATTLE!!!';
-            return;
-        }
+        displayScore(round);
+        gameStop(pScore, cScore);
     })
 
     paper.addEventListener('click', () => {
         round = playRound('paper', computerPlay());
-        if (round == 0) {
-            result.textContent = 'You lose!';
-            cScore++;
-        } else if (round == 1) {
-            result.textContent = 'You win!';
-            pScore++;
-        } else if (round == 2) {
-            result.textContent = 'It\'s a draw!';
-        }
-        playerScore.textContent = `${pScore}`;
-        computerScore.textContent = `${cScore}`;
-
-        // Stops the function when winner score is reached
-        if (pScore === 5) {
-            playGame.textContent = 'PlAY AGAIN!';
-            result.textContent = 'YOU WON THE BATTLE!!!';
-            return;
-        } else if (cScore === 5) {
-            playGame.textContent = 'PlAY AGAIN!';
-            result.textContent = 'YOU LOST THE BATTLE!!!';
-            return;
-        }
+        displayScore(round);
+        gameStop(pScore, cScore);
     })
 
     scissors.addEventListener('click', () => {
         round = playRound('scissors', computerPlay());
-        if (round == 0) {
-            result.textContent = 'You lose!';
-            cScore++;
-        } else if (round == 1) {
-            result.textContent = 'You win!';
-            pScore++;
-        } else if (round == 2) {
-            result.textContent = 'It\'s a draw!';
-        }
-        playerScore.textContent = `${pScore}`;
-        computerScore.textContent = `${cScore}`;
-
-        // Stops the function when winner score is reached
-        if (pScore === 5) {
-            playGame.textContent = 'PlAY AGAIN!';
-            result.textContent = 'YOU WON THE BATTLE!!!';
-            return;
-        } else if (cScore === 5) {
-            playGame.textContent = 'PlAY AGAIN!';
-            result.textContent = 'YOU LOST THE BATTLE!!!';
-            return;
-        }
+        displayScore(round);
+        gameStop(pScore, cScore);
     })
-
-    
 }
 
+function displayScore (round) {
+    if (round == 0) {
+        result.textContent = 'You lose!';
+        cScore++;
+    } else if (round == 1) {
+        result.textContent = 'You win!';
+        pScore++;
+    } else if (round == 2) {
+        result.textContent = 'It\'s a draw!';
+    }
+    playerScore.textContent = `${pScore}`;
+    computerScore.textContent = `${cScore}`;
+}
 
+function gameStop (pScore, cScore) {
+    if (pScore === 5) {
+        playGame.textContent = 'PlAY AGAIN!';
+        result.textContent = 'YOU WON THE BATTLE!!!';
+        return;
+    } else if (cScore === 5) {
+        playGame.textContent = 'PlAY AGAIN!';
+        result.textContent = 'YOU LOST THE BATTLE!!!';
+        return;
+    }
+}
+
+// display
+const playerScore = document.querySelector('[data-user="player"]');
+const computerScore = document.querySelector('[data-user="computer"]');
+
+// scores
+let pScore = 0, cScore = 0;
+
+
+const result = document.querySelector('.result');
 const playGame = document.getElementById('play');
 playGame.addEventListener('click', game)
