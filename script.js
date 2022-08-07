@@ -37,24 +37,6 @@ function game() {
     computerScore.textContent = `${cScore}`;
 
     result.textContent = 'THE BATTLE BEGINS!';
-
-    rock.addEventListener('click', () => {
-        round = playRound('rock', computerPlay());
-        displayScore(round);
-        gameStop(pScore, cScore);
-    })
-
-    paper.addEventListener('click', () => {
-        round = playRound('paper', computerPlay());
-        displayScore(round);
-        gameStop(pScore, cScore);
-    })
-
-    scissors.addEventListener('click', () => {
-        round = playRound('scissors', computerPlay());
-        displayScore(round);
-        gameStop(pScore, cScore);
-    })
 }
 
 function displayScore (round) {
@@ -82,6 +64,25 @@ function gameStop (pScore, cScore) {
         return;
     }
 }
+
+rock.addEventListener('click', () => {
+    round = playRound('rock', computerPlay());
+    displayScore(round);
+    gameStop(pScore, cScore);
+})
+
+paper.addEventListener('click', () => {
+    round = playRound('paper', computerPlay());
+    displayScore(round);
+    gameStop(pScore, cScore);
+})
+
+scissors.addEventListener('click', () => {
+    round = playRound('scissors', computerPlay());
+    displayScore(round);
+    gameStop(pScore, cScore);
+})
+
 
 // display
 const playerScore = document.querySelector('[data-user="player"]');
