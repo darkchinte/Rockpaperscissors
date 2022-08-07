@@ -47,12 +47,13 @@ function playRound (playerSelection, computerSelection) {
 }
 
 function game() {
+    audioStop();
     // reset score
     pScore = 0, cScore = 0;
     playerScore.textContent = `${pScore}`;
     computerScore.textContent = `${cScore}`;
     result.textContent = 'THE BATTLE BEGINS!';
-
+    // display result
     win.style.display = 'none';
     lose.style.display = 'none';
     choices.setAttribute('style', 'visibility: visible; opacity: 1;')
@@ -67,12 +68,33 @@ function gameStop (pScore, cScore) {
         choices.style.display = 'none';
         win.style.display = 'block';
         playGame.style.visibility = 'visible';
+        audioPlay(1);
     } else if (cScore === 5) {
         playGame.textContent = 'PlAY AGAIN!';
         lose.style.display = 'block';
         choices.style.display = 'none';
         playGame.style.visibility = 'visible';
+        audioPlay(2);
     }
+}
+
+function audioPlay(n) {
+    if (n == 1) {
+        const audio = document.querySelector(`[data-audio="${n}"]`);
+        audio.play();
+    } else if (n == 2) {
+        const audio = document.querySelector(`[data-audio="${n}"]`);
+        audio.play();
+    }
+}
+
+function audioStop() {
+    const audio1 = document.querySelector('[data-audio="1"]');
+    const audio2 = document.querySelector('[data-audio="2"]');
+    audio1.pause();
+    audio1.currentTime = 0;
+    audio2.pause();
+    audio2.currentTime = 0;
 }
 
 rock.addEventListener('click', () => {
